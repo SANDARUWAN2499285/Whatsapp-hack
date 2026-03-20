@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #050505; font-family: 'Segoe UI', sans-serif; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        body { background: #050505; font-family: 'Segoe UI', sans-serif; color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
         
-        /* Banner Style */
+        /* Fixed Top Banner */
         .top-banner {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
@@ -19,8 +19,9 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
             z-index: 1000;
         }
 
@@ -40,13 +41,37 @@
             box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
         }
 
-        .container { width: 90%; max-width: 400px; text-align: center; padding: 30px 0; display: flex; flex-direction: column; align-items: center; }
+        /* Main Content Area */
+        .content {
+            margin-top: 80px; /* Banner එකට යටින් පටන් ගන්න */
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            padding-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .profile-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #007aff; object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(0,122,255,0.4); }
         h2 { margin: 5px 0; font-size: 22px; }
         p { color: #888; font-size: 13px; margin-bottom: 25px; }
 
+        /* Buttons Container */
         .links { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-        .social-link { display: flex; align-items: center; text-decoration: none; color: white; padding: 14px 20px; border-radius: 18px; font-weight: 600; font-size: 15px; transition: 0.3s ease; width: 100%; }
+        .social-link { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+            color: white; 
+            padding: 14px 20px; 
+            border-radius: 18px; 
+            font-weight: 600; 
+            font-size: 15px; 
+            transition: 0.3s ease; 
+            width: 100%; 
+            border: 1px solid rgba(255,255,255,0.05);
+        }
         .social-link i { font-size: 20px; margin-right: 15px; width: 25px; text-align: center; }
 
         /* Social Colors */
@@ -73,7 +98,7 @@
         <a href="ai.html" class="ai-banner-btn"><i class="fas fa-robot"></i> AI</a>
     </div>
 
-    <div class="container">
+    <div class="content">
         <img src="profile.png" class="profile-img" alt="Nirosha">
         <h2>NIROSHA SANDARUWAN</h2>
         <p>Connect with me on Social Media</p>
@@ -89,7 +114,7 @@
             <a href="https://t.me/SANDARUWAN249928" target="_blank" class="social-link telegram"><i class="fab fa-telegram"></i> Telegram</a>
             <a href="imo://94741570339" class="social-link imo"><i class="fas fa-comment"></i> Imo</a>
             <a href="viber://chat?number=94741570339" class="social-link viber"><i class="fab fa-viber"></i> Viber</a>
-            <a href="tel:0741570339" class="social-link phone"><i class="fa-solid fa-phone"></i> Call Me (0741570339)</a>
+            <a href="tel:0741570339" class="social-link phone"><i class="fa-solid fa-phone"></i> Call Me</a>
         </div>
 
         <button class="back-btn" onclick="location.href='home.html'">Back to Home</button>
