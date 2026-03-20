@@ -1,11 +1,35 @@
-<input type="email" id="userEmail" placeholder="Email Address">
-<input type="password" id="userPass" placeholder="Password">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANDARUWAN WEB</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
-<button class="btn login-btn" onclick="signIn()">SIGN IN</button>
-<button class="btn signup-btn" onclick="signUp()">REGISTER</button>
+    <style>
+        body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; font-family: sans-serif; color: #fff; }
+        .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 40px; border-radius: 30px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #444; background: #222; color: #fff; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; margin-top: 10px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .login-btn { background: #fff; color: #000; }
+        .signup-btn { background: #007aff; color: #fff; }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <h1>SANDARUWAN WEB</h1>
+    <input type="email" id="userEmail" placeholder="Email Address">
+    <input type="password" id="userPass" placeholder="Password">
+    <button class="login-btn" onclick="signIn()">SIGN IN</button>
+    <button class="signup-btn" onclick="signUp()">REGISTER</button>
+</div>
 
 <script>
-  // Firebase Config එක (ඔයා කලින් එවපු එකමයි)
+  // Firebase Configuration (ඔබේ විස්තර)
   const firebaseConfig = {
     apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
     authDomain: "sandaruwan-web.firebaseapp.com",
@@ -16,7 +40,10 @@
     appId: "1:219324339628:web:7b237143ed408c3a921609"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+  }
   const auth = firebase.auth();
 
   // REGISTER FUNCTION
@@ -25,13 +52,13 @@
     const pass = document.getElementById('userPass').value;
 
     if(email === "" || pass === "") {
-        alert("Please fill all fields");
+        alert("Please fill all fields!");
         return;
     }
 
     auth.createUserWithEmailAndPassword(email, pass)
       .then((userCredential) => {
-        alert("Account Created Successfully! 🎉");
+        alert("Account Created Successfully! 🎉 Now you can Sign In.");
       })
       .catch((error) => {
         alert("Error: " + error.message);
@@ -43,6 +70,11 @@
     const email = document.getElementById('userEmail').value;
     const pass = document.getElementById('userPass').value;
 
+    if(email === "" || pass === "") {
+        alert("Please enter email and password!");
+        return;
+    }
+
     auth.signInWithEmailAndPassword(email, pass)
       .then((userCredential) => {
         alert("Login Success! ✅");
@@ -53,4 +85,7 @@
       });
   }
 </script>
+
+</body>
+</html>
 
