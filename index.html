@@ -1,4 +1,11 @@
+<input type="email" id="userEmail" placeholder="Email Address">
+<input type="password" id="userPass" placeholder="Password">
+
+<button class="btn login-btn" onclick="signIn()">SIGN IN</button>
+<button class="btn signup-btn" onclick="signUp()">REGISTER</button>
+
 <script>
+  // Firebase Config එක (ඔයා කලින් එවපු එකමයි)
   const firebaseConfig = {
     apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
     authDomain: "sandaruwan-web.firebaseapp.com",
@@ -12,198 +19,38 @@
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
 
-  // Register Function
+  // REGISTER FUNCTION
   function signUp() {
     const email = document.getElementById('userEmail').value;
     const pass = document.getElementById('userPass').value;
+
+    if(email === "" || pass === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
     auth.createUserWithEmailAndPassword(email, pass)
-      .then(() => { alert("Account Created! 🎉"); })
-      .catch((error) => { alert(error.message); });
+      .then((userCredential) => {
+        alert("Account Created Successfully! 🎉");
+      })
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
   }
 
-  // Login Function
+  // SIGN IN FUNCTION
   function signIn() {
     const email = document.getElementById('userEmail').value;
     const pass = document.getElementById('userPass').value;
+
     auth.signInWithEmailAndPassword(email, pass)
-      .then(() => { 
-          alert("Logged In! ✅");
-          window.location.href = "home.html";
+      .then((userCredential) => {
+        alert("Login Success! ✅");
+        window.location.href = "home.html";
       })
-      .catch((error) => { alert(error.message); });
+      .catch((error) => {
+        alert("Error: " + error.message);
+      });
   }
 </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANDARUWAN WEB | SECURE ACCESS</title>
-    
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-
-    <style>
-        :root {
-            --primary: #007aff;
-            --liquid: #00c6ff;
-        }
-
-        body { 
-            margin: 0; 
-            height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background: #000; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden; 
-            position: relative; 
-        }
-
-        /* Animated Blue Liquid Background */
-        .liquid-bg { 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            filter: blur(60px); 
-            z-index: -1; 
-        }
-
-        .orb { 
-            position: absolute; 
-            width: 500px; 
-            height: 500px; 
-            border-radius: 50%; 
-            background: linear-gradient(45deg, var(--primary), var(--liquid)); 
-            animation: move 15s infinite alternate ease-in-out; 
-            opacity: 0.5; 
-        }
-
-        @keyframes move { 
-            from { transform: translate(-10%, -10%) scale(1); } 
-            to { transform: translate(20%, 20%) scale(1.2); } 
-        }
-
-        /* Premium Glass Card */
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(35px) saturate(180%); 
-            -webkit-backdrop-filter: blur(35px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            border-radius: 35px; 
-            padding: 45px 35px; 
-            width: 340px; 
-            text-align: center; 
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5); 
-        }
-
-        h1 { color: #fff; font-size: 26px; margin-bottom: 8px; font-weight: 700; }
-        .subtitle { color: rgba(255, 255, 255, 0.5); font-size: 13px; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 1px; }
-
-        input { 
-            width: 100%; 
-            padding: 16px; 
-            margin-bottom: 12px; 
-            background: rgba(255, 255, 255, 0.08); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 18px; 
-            color: #fff; 
-            outline: none; 
-            box-sizing: border-box; 
-            font-size: 15px;
-            transition: 0.3s;
-        }
-
-        input:focus { border-color: var(--liquid); background: rgba(255, 255, 255, 0.15); }
-
-        .btn { 
-            width: 100%; 
-            padding: 16px; 
-            border-radius: 18px; 
-            border: none; 
-            font-weight: 600; 
-            font-size: 16px;
-            cursor: pointer; 
-            transition: 0.3s; 
-            margin-top: 10px; 
-        }
-
-        .login-btn { background: #fff; color: #000; }
-        .signup-btn { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); margin-top: 15px; }
-        
-        .btn:active { transform: scale(0.96); }
-
-        #status-msg { 
-            margin-top: 20px; 
-            font-size: 13px; 
-            min-height: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="liquid-bg"><div class="orb"></div></div>
-
-    <div class="glass-card">
-        <h1>SANDARUWAN WEB</h1>
-        <div class="subtitle">Cloud Auth System</div>
-        
-        <input type="email" id="email" placeholder="Email Address">
-        <input type="password" id="password" placeholder="Password">
-        
-        <button class="btn login-btn" onclick="login()">SIGN IN</button>
-        <button class="btn signup-btn" onclick="signUp()">REGISTER</button>
-        
-        <div id="status-msg"></div>
-    </div>
-
-    <script>
-        // Your Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
-            authDomain: "sandaruwan-web.firebaseapp.com",
-            databaseURL: "https://sandaruwan-web-default-rtdb.firebaseio.com",
-            projectId: "sandaruwan-web",
-            storageBucket: "sandaruwan-web.firebasestorage.app",
-            messagingSenderId: "219324339628",
-            appId: "1:219324339628:web:7b237143ed408c3a921609"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        const msgArea = document.getElementById('status-msg');
-
-        // Sign Up Function
-        function signUp() {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-
-            auth.createUserWithEmailAndPassword(email, pass)
-                .then(() => {
-                    msgArea.style.color = "#00ffcc";
-                    msgArea.innerText = "Account Created! You can now Login. 🎉";
-                })
-                .catch((error) => {
-                    msgArea.style.color = "#ff3b30";
-                    msgArea.innerText = error.message;
-                });
-        }
-
-        // Login Function
-        function login() {
-            const email = document.getElementById('email').value;
-            const pass = document.getElementById('password').value;
-
-            auth.signInWithEmailAndPassword(email, pass)
-                .then(() => {
-                    msgArea.style.color = "#00ffcc";
-                    msgArea.innerText = "Access Granted. Welcome! ✅";
-                })
-                .catch((error) => {
-                    msgArea.style.color = "#ff3b30";
-                    msgArea.innerText = error.message;
-                });
 
