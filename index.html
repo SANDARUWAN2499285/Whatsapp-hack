@@ -3,89 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANDARUWAN WEB</title>
-    
+    <title>LOGIN | NIROSHA</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-
     <style>
-        body { margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; font-family: sans-serif; color: #fff; }
-        .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); padding: 40px; border-radius: 30px; width: 300px; text-align: center; border: 1px solid rgba(255,255,255,0.2); }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #444; background: #222; color: #fff; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; margin-top: 10px; border-radius: 12px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .login-btn { background: #fff; color: #000; }
-        .signup-btn { background: #007aff; color: #fff; }
-        button:active { transform: scale(0.95); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { height: 100vh; display: flex; justify-content: center; align-items: center; background: #000; font-family: 'Segoe UI', sans-serif; color: white; overflow: hidden; }
+
+        /* Glassmorphism Card */
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        h2 { margin-bottom: 30px; font-weight: 600; letter-spacing: 1px; }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #007aff;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Google Button Style */
+        .btn-google {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-google img { width: 20px; margin-right: 10px; }
+        .btn-google:hover { background: rgba(255, 255, 255, 0.2); }
+
+        /* Animated Glass Notification */
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: -100%; /* කලින් සැඟවී ඇත */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            z-index: 9999;
+        }
+        #notification.show { right: 20px; }
     </style>
 </head>
 <body>
 
-<div class="glass-card">
-    <h1>SANDARUWAN WEB</h1>
-    <input type="email" id="userEmail" placeholder="Email Address">
-    <input type="password" id="userPass" placeholder="Password">
-    <button class="login-btn" onclick="signIn()">SIGN IN</button>
-    <button class="signup-btn" onclick="signUp()">REGISTER</button>
-</div>
+    <div id="notification">Notification Message</div>
 
-<script>
-  // Firebase Configuration (ඔබේ විස්තර)
-  const firebaseConfig = {
-    apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
-    authDomain: "sandaruwan-web.firebaseapp.com",
-    databaseURL: "https://sandaruwan-web-default-rtdb.firebaseio.com",
-    projectId: "sandaruwan-web",
-    storageBucket: "sandaruwan-web.firebasestorage.app",
-    messagingSenderId: "219324339628",
-    appId: "1:219324339628:web:7b237143ed408c3a921609"
-  };
+    <div class="login-card">
+        <h2>LOGIN</h2>
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="password" id="password" placeholder="Password">
+        <button class="btn-login" onclick="login()">Sign In</button>
+        
+        <div style="margin: 20px 0; color: #555;">OR</div>
 
-  // Initialize Firebase
-  if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-  }
-  const auth = firebase.auth();
+        <button class="btn-google" onclick="googleLogin()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
+            Continue with Google
+        </button>
+    </div>
 
-  // REGISTER FUNCTION
-  function signUp() {
-    const email = document.getElementById('userEmail').value;
-    const pass = document.getElementById('userPass').value;
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
+            authDomain: "sandaruwan-web.firebaseapp.com",
+            projectId: "sandaruwan-web",
+            storageBucket: "sandaruwan-web.firebasestorage.app",
+            messagingSenderId: "219324339628",
+            appId: "1:219324339628:web:7b237143ed408c3a921609"
+        };
+        firebase.initializeApp(firebaseConfig);
 
-    if(email === "" || pass === "") {
-        alert("Please fill all fields!");
-        return;
-    }
+        function showNotify(msg, color = "#fff") {
+            const nt = document.getElementById('notification');
+            nt.innerText = msg;
+            nt.style.color = color;
+            nt.classList.add('show');
+            setTimeout(() => { nt.classList.remove('show'); }, 3000);
+        }
 
-    auth.createUserWithEmailAndPassword(email, pass)
-      .then((userCredential) => {
-        alert("Account Created Successfully! 🎉 Now you can Sign In.");
-      })
-      .catch((error) => {
-        alert("Error: " + error.message);
-      });
-  }
+        // Email/Password Login
+        function login() {
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            firebase.auth().signInWithEmailAndPassword(email, pass)
+                .then(() => {
+                    showNotify("Success! Redirecting...", "#00ffcc");
+                    setTimeout(() => window.location.href = "home.html", 1000);
+                })
+                .catch(err => showNotify(err.message, "#ff3b30"));
+        }
 
-  // SIGN IN FUNCTION
-  function signIn() {
-    const email = document.getElementById('userEmail').value;
-    const pass = document.getElementById('userPass').value;
-
-    if(email === "" || pass === "") {
-        alert("Please enter email and password!");
-        return;
-    }
-
-    auth.signInWithEmailAndPassword(email, pass)
-      .then((userCredential) => {
-        alert("Login Success! ✅");
-        window.location.href = "home.html";
-      })
-      .catch((error) => {
-        alert("Error: " + error.message);
-      });
-  }
-</script>
-
+        // Google Login Logic
+        function googleLogin() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider)
+                .then(() => {
+                    showNotify("Welcome! Redirecting...", "#00ffcc");
+                    setTimeout(() => window.location.href = "home.html", 1000);
+                })
+                .catch(err => showNotify(err.message, "#ff3b30"));
+        }
+    </script>
 </body>
 </html>
 
