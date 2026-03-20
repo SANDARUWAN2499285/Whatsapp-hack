@@ -6,26 +6,25 @@
     <title>SANDARUWAN WEB | NIROSHA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #050505; font-family: 'Segoe UI', sans-serif; color: white; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        body { margin: 0; padding: 0; background: #050505; font-family: 'Segoe UI', sans-serif; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
         
-        /* Fixed Top Banner */
+        /* Banner with AI Button inside */
         .top-banner {
             width: 100%;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
             z-index: 1000;
         }
 
-        .banner-text { font-weight: 800; font-size: 18px; letter-spacing: 2px; color: #007aff; text-transform: uppercase; }
+        .banner-text { font-weight: 800; font-size: 18px; letter-spacing: 3px; color: #007aff; text-transform: uppercase; }
 
         .ai-banner-btn {
             background: linear-gradient(45deg, #007aff, #00ffcc);
@@ -39,66 +38,39 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
+            transition: 0.3s;
         }
+        .ai-banner-btn:hover { transform: scale(1.05); }
 
-        /* Main Content Area */
-        .content {
-            margin-top: 80px; /* Banner එකට යටින් පටන් ගන්න */
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            padding-bottom: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .profile-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #007aff; object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(0,122,255,0.4); }
+        .container { width: 90%; max-width: 400px; text-align: center; padding: 30px 0; }
+        .profile-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #007aff; object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 20px rgba(0,122,255,0.4); }
         h2 { margin: 5px 0; font-size: 22px; }
-        p { color: #888; font-size: 13px; margin-bottom: 25px; }
+        p { color: #888; font-size: 13px; margin-bottom: 20px; }
 
-        /* Buttons Container */
-        .links { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-        .social-link { 
-            display: flex; 
-            align-items: center; 
-            text-decoration: none; 
-            color: white; 
-            padding: 14px 20px; 
-            border-radius: 18px; 
-            font-weight: 600; 
-            font-size: 15px; 
-            transition: 0.3s ease; 
-            width: 100%; 
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        .links { width: 100%; }
+        .social-link { display: flex; align-items: center; text-decoration: none; color: white; padding: 14px 20px; margin: 10px 0; border-radius: 18px; font-weight: 600; font-size: 15px; transition: 0.3s ease; }
         .social-link i { font-size: 20px; margin-right: 15px; width: 25px; text-align: center; }
 
         /* Social Colors */
-        .facebook { background: #1877F2; }
-        .whatsapp { background: #25D366; }
-        .youtube { background: #FF0000; }
-        .instagram { background: linear-gradient(45deg, #f09433, #bc1888); }
-        .tiktok { background: #000; border: 1px solid #444; }
-        .x-twitter { background: #000; border: 1px solid #444; }
-        .snapchat { background: #FFFC00; color: #000; }
-        .telegram { background: #0088cc; }
-        .imo { background: #2F80ED; }
-        .viber { background: #7360F2; }
-        .phone { background: #333; }
+        .facebook { background: #1877F2; } .whatsapp { background: #25D366; } .youtube { background: #FF0000; } 
+        .instagram { background: linear-gradient(45deg, #f09433, #bc1888); } .tiktok { background: #000; border: 1px solid #333; }
+        .snapchat { background: #FFFC00; color: #000; } .telegram { background: #0088cc; } .phone { background: #333; }
+        .imo { background: #2F80ED; } .viber { background: #7360F2; } .x-twitter { background: #000; border: 1px solid #444; }
 
         .social-link:hover { transform: translateY(-3px); filter: brightness(1.2); }
-        .back-btn { background: none; border: 1px solid #444; color: #777; padding: 10px 25px; margin-top: 30px; border-radius: 25px; cursor: pointer; }
+        .back-btn { background: none; border: 1px solid #444; color: #777; padding: 10px 25px; margin-top: 20px; border-radius: 25px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div class="top-banner">
         <div class="banner-text">SANDARUWAN WEB</div>
-        <a href="ai.html" class="ai-banner-btn"><i class="fas fa-robot"></i> AI</a>
+        <a href="ai.html" class="ai-banner-btn">
+            <i class="fas fa-robot"></i> AI
+        </a>
     </div>
 
-    <div class="content">
+    <div class="container">
         <img src="profile.png" class="profile-img" alt="Nirosha">
         <h2>NIROSHA SANDARUWAN</h2>
         <p>Connect with me on Social Media</p>
