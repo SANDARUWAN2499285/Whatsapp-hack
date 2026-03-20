@@ -6,27 +6,32 @@
     <title>Login | SANDARUWAN</title>
     <style>
         body { background: #000; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-card { background: #111; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #333; width: 280px; box-shadow: 0 0 20px rgba(0, 122, 255, 0.2); }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #444; background: #222; color: white; outline: none; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; border-radius: 10px; border: none; background: #007aff; color: white; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        button:hover { background: #0056b3; }
+        .login-card { background: #111; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid #333; width: 300px; }
+        h2 { color: #007aff; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #222; color: white; outline: none; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #007aff; color: white; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="login-card">
-        <h2 style="color:#007aff; margin-bottom: 20px;">SANDARUWAN</h2>
-        <input type="text" id="u" placeholder="Username">
-        <input type="password" id="p" placeholder="Password">
-        <button onclick="check()">LOGIN</button>
-        <p id="err" style="color:red; font-size:12px; margin-top:10px;"></p>
+        <h2>LOGIN</h2>
+        <input type="email" id="email" placeholder="Email Address">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="auth()">LOGIN</button>
+        <p id="error" style="color:red; font-size:12px; margin-top:10px;"></p>
     </div>
+
     <script>
-        function check() {
-            var user = document.getElementById("u").value;
-            var pass = document.getElementById("p").value;
-            // Username: nirosha | Password: 123
-            if(user == "nirosha" && pass == "123") { window.location.href = "main.html"; }
-            else { document.getElementById("err").innerHTML = "වැරදියි! නැවත උත්සාහ කරන්න."; }
+        function auth() {
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+
+            // මෙතන ඔයාගේ Email එක සහ Password එක දාන්න
+            if(email == "admin@gmail.com" && pass == "1234") {
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById("error").innerHTML = "Email හෝ Password වැරදියි!";
+            }
         }
     </script>
 </body>
