@@ -1,6 +1,3 @@
-function nextPage() {
-    window.location.href = "main.html"; // මෙතනින් තමයි අලුත් පිටුවට යන්නේ
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +21,7 @@ function nextPage() {
             overflow: hidden;
         }
 
-        /* Blue Liquid Animation Background */
+        /* Blue Background Animation */
         .bg {
             position: absolute;
             width: 100%;
@@ -40,7 +37,7 @@ function nextPage() {
             background: linear-gradient(45deg, #007aff, #00ffcc);
             filter: blur(80px);
             border-radius: 50%;
-            opacity: 0.4;
+            opacity: 0.3;
             animation: float 10s infinite alternate ease-in-out;
         }
 
@@ -50,39 +47,26 @@ function nextPage() {
         }
 
         .card {
-<div class="card">
-    <h1>Welcome Back! 👋</h1>
-    <p>You have successfully logged in as:</p>
-    <div id="displayEmail" class="user-email">Loading...</div>
-    
-    <div class="btn-container" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-        <button onclick="nextPage()" style="background: #007aff; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">CONTINUE</button>
-        
-        <button onclick="logout()" style="background: #ff3b30; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">LOGOUT</button>
-    </div>
-</div>
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(20px);
             padding: 40px;
-            border-radius: 40px;
+            border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             width: 320px;
         }
 
-        h1 { font-size: 28px; margin-bottom: 10px; background: linear-gradient(to right, #fff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h1 { font-size: 26px; margin-bottom: 10px; color: #fff; }
         p { color: rgba(255,255,255,0.6); font-size: 14px; }
-        .user-email { font-weight: bold; color: #00ffcc; margin: 15px 0; font-size: 16px; word-break: break-all; }
+        .user-email { font-weight: bold; color: #00ffcc; margin: 20px 0; font-size: 16px; word-break: break-all; }
 
         .btn-container {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-top: 20px;
         }
 
-        /* Continue Button */
+        /* Continue Button Style */
         .btn-continue {
             background: #007aff;
             color: #fff;
@@ -94,7 +78,7 @@ function nextPage() {
             transition: 0.3s;
         }
 
-        /* Logout Button */
+        /* Logout Button Style */
         .btn-logout {
             background: #ff3b30;
             color: #fff;
@@ -107,7 +91,6 @@ function nextPage() {
         }
 
         button:hover { opacity: 0.8; transform: scale(1.02); }
-        button:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -116,7 +99,7 @@ function nextPage() {
 
     <div class="card">
         <h1>Welcome Back! 👋</h1>
-        <p>You have successfully logged in as:</p>
+        <p>You are logged in as:</p>
         <div id="displayEmail" class="user-email">Loading...</div>
         
         <div class="btn-container">
@@ -126,6 +109,7 @@ function nextPage() {
     </div>
 
     <script>
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
             authDomain: "sandaruwan-web.firebaseapp.com",
@@ -136,8 +120,10 @@ function nextPage() {
             appId: "1:219324339628:web:7b237143ed408c3a921609"
         };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
+        // පරිශීලකයා පරීක්ෂා කිරීම
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 document.getElementById('displayEmail').innerText = user.email;
@@ -146,12 +132,12 @@ function nextPage() {
             }
         });
 
-        // Continue එබූ විට යා යුතු පිටුව මෙතනට දාන්න
+        // Continue බොත්තමේ ක්‍රියාව
         function nextPage() {
-            alert("Proceeding to the next page...");
-            // window.location.href = "your_next_page.html"; 
+            window.location.href = "main.html";
         }
 
+        // Logout බොත්තමේ ක්‍රියාව
         function logout() {
             firebase.auth().signOut().then(() => {
                 window.location.href = "index.html";
