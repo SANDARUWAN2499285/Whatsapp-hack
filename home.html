@@ -47,6 +47,17 @@
         }
 
         .card {
+<div class="card">
+    <h1>Welcome Back! 👋</h1>
+    <p>You have successfully logged in as:</p>
+    <div id="displayEmail" class="user-email">Loading...</div>
+    
+    <div class="btn-container" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+        <button onclick="nextPage()" style="background: #007aff; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">CONTINUE</button>
+        
+        <button onclick="logout()" style="background: #ff3b30; color: #fff; border: none; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">LOGOUT</button>
+    </div>
+</div>
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(25px);
             padding: 40px;
