@@ -1,4 +1,4 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,71 +8,43 @@ x<!DOCTYPE html>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #000; font-family: sans-serif; color: white; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-
-        /* Banner */
-        .banner {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-        .banner-text { color: #007aff; font-weight: bold; letter-spacing: 2px; }
-        .ai-btn { background: cyan; color: black; padding: 5px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 14px; }
-
-        /* Content */
-        .container { width: 90%; max-width: 400px; text-align: center; padding-top: 30px; }
+        .banner { width: 100%; background: #111; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; position: sticky; top: 0; }
+        .banner-text { color: #007aff; font-weight: bold; }
+        .ai-btn { background: #007aff; color: white; padding: 5px 15px; border-radius: 20px; text-decoration: none; font-size: 14px; }
+        .container { width: 90%; max-width: 400px; text-align: center; padding: 30px 10px; }
         .profile-img { width: 110px; height: 110px; border-radius: 50%; border: 3px solid #007aff; margin-bottom: 15px; }
-        
-        /* Links */
-        .links { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; width: 100%; }
-        .link { 
-            display: flex; align-items: center; padding: 15px; border-radius: 12px; 
-            text-decoration: none; color: white; font-weight: bold; font-size: 15px; 
-        }
-        .link i { margin-right: 15px; font-size: 20px; width: 25px; text-align: center; }
-
+        .links { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+        .btn { display: flex; align-items: center; padding: 15px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; font-size: 15px; border: 1px solid #222; }
+        .btn i { margin-right: 15px; font-size: 20px; width: 25px; text-align: center; }
         /* Colors */
         .fb { background: #1877F2; } .wa { background: #25D366; } .yt { background: #FF0000; }
         .ig { background: linear-gradient(45deg, #f09433, #bc1888); } .tk { background: #000; border: 1px solid #444; }
         .xt { background: #000; border: 1px solid #444; } .sc { background: #FFFC00; color: #000; }
-        .tg { background: #0088cc; } .im { background: #2F80ED; } .vi { background: #7360F2; }
-        .ph { background: #333; }
+        .tg { background: #0088cc; } .im { background: #2F80ED; } .vi { background: #7360F2; } .ph { background: #333; }
     </style>
 </head>
 <body>
-
     <div class="banner">
         <span class="banner-text">SANDARUWAN WEB</span>
         <a href="ai.html" class="ai-btn">AI CHAT</a>
     </div>
-
     <div class="container">
         <img src="profile.png" class="profile-img">
-        <h2>NIROSHA SANDARUWAN</h2>
-        <p style="color: #888; font-size: 14px; margin-top: 5px;">Web & AI Developer</p>
-
+        <h2 style="margin-bottom: 20px;">NIROSHA SANDARUWAN</h2>
         <div class="links">
-            <a href="https://www.facebook.com/share/18Bp78yEBk/" class="link fb"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://wa.me/94741570339" class="link wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://youtube.com/@nirosha_sandaruwan" class="link yt"><i class="fab fa-youtube"></i> YouTube</a>
-            <a href="https://www.instagram.com/sandaruwan249928" class="link ig"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://www.tiktok.com/@nirosha_sandaruwan" class="link tk"><i class="fab fa-tiktok"></i> TikTok</a>
-            <a href="https://x.com/sandaruwan" class="link xt"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
-            <a href="https://www.snapchat.com/add/sadaruwan249928" class="link sc"><i class="fab fa-snapchat"></i> Snapchat</a>
-            <a href="https://t.me/SANDARUWAN249928" class="link tg"><i class="fab fa-telegram"></i> Telegram</a>
-            <a href="imo://94741570339" class="link im"><i class="fas fa-comment"></i> Imo</a>
-            <a href="viber://chat?number=94741570339" class="link vi"><i class="fab fa-viber"></i> Viber</a>
-            <a href="tel:0741570339" class="link ph"><i class="fas fa-phone"></i> Call Me</a>
+            <a href="https://www.facebook.com/share/18Bp78yEBk/" class="btn fb"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://wa.me/94741570339" class="btn wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://youtube.com/@nirosha_sandaruwan" class="btn yt"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.instagram.com/sandaruwan249928" class="btn ig"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@nirosha_sandaruwan" class="btn tk"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://x.com/sandaruwan" class="btn xt"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+            <a href="https://www.snapchat.com/add/sadaruwan249928" class="btn sc"><i class="fab fa-snapchat"></i> Snapchat</a>
+            <a href="https://t.me/SANDARUWAN249928" class="btn tg"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="imo://94741570339" class="btn im"><i class="fas fa-comment"></i> Imo</a>
+            <a href="viber://chat?number=94741570339" class="btn vi"><i class="fab fa-viber"></i> Viber</a>
+            <a href="tel:0741570339" class="btn ph"><i class="fas fa-phone"></i> Call Me</a>
         </div>
     </div>
-
 </body>
 </html>
 
