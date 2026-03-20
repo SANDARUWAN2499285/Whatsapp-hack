@@ -1,9 +1,120 @@
 <!DOCTYPE html>
-<html>
-<body style="background: #000; color: #fff; text-align: center; font-family: sans-serif; padding-top: 100px;">
-    <h1>Welcome to Your Dashboard! 🔓</h1>
-    <p>ඔබ සාර්ථකව ඇතුළු වුණා.</p>
-    <button onclick="location.href='index.html'" style="padding: 10px 20px; cursor: pointer;">Logout</button>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD | SANDARUWAN WEB</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <style>
+        body { 
+            margin: 0; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: #000; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Blue Liquid Animation Background */
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #001f3f, #000);
+            z-index: -1;
+        }
+
+        .orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(45deg, #007aff, #00ffcc);
+            filter: blur(80px);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(10%, 10%); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            padding: 50px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-size: 32px; margin-bottom: 10px; background: linear-gradient(to right, #fff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        p { color: rgba(255,255,255,0.6); }
+        .user-email { font-weight: bold; color: #00ffcc; margin: 20px 0; font-size: 18px; }
+
+        .btn-logout {
+            background: #ff3b30;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-logout:hover { background: #ff453a; transform: scale(1.05); }
+    </style>
+</head>
+<body>
+
+    <div class="bg"><div class="orb"></div></div>
+
+    <div class="card">
+        <h1>Welcome Back! 👋</h1>
+        <p>You have successfully logged in as:</p>
+        <div id="displayEmail" class="user-email">Loading...</div>
+        <button class="btn-logout" onclick="logout()">LOGOUT</button>
+    </div>
+
+    <script>
+        // Firebase Config (ඔබේ එකමයි)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
+            authDomain: "sandaruwan-web.firebaseapp.com",
+            databaseURL: "https://sandaruwan-web-default-rtdb.firebaseio.com",
+            projectId: "sandaruwan-web",
+            storageBucket: "sandaruwan-web.firebasestorage.app",
+            messagingSenderId: "219324339628",
+            appId: "1:219324339628:web:7b237143ed408c3a921609"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Login වී සිටින පරිශීලකයාගේ විස්තර ලබාගැනීම
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById('displayEmail').innerText = user.email;
+            } else {
+                // Login වී නැත්නම් ආපසු Login පිටුවට යවන්න
+                window.location.href = "index.html";
+            }
+        });
+
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                window.location.href = "index.html";
+            });
+        }
+    </script>
 </body>
 </html>
 
