@@ -4,32 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONNECT WITH NIROSHA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #050505; font-family: sans-serif; color: white; }
-        .container { width: 90%; max-width: 420px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); padding: 30px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center; }
-        h2 { margin-bottom: 5px; color: #fff; }
-        p { color: #888; font-size: 14px; margin-bottom: 25px; }
-        .social-link { display: block; text-decoration: none; color: white; padding: 15px; margin: 12px 0; border-radius: 15px; font-weight: bold; transition: 0.3s; text-transform: uppercase; font-size: 14px; }
+        body { 
+            margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; 
+            min-height: 100vh; background: #050505; font-family: 'Segoe UI', sans-serif; color: white;
+        }
+        .container {
+            width: 90%; max-width: 450px; background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px); padding: 30px; border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;
+            margin: 20px 0;
+        }
+        h2 { margin-bottom: 5px; color: #fff; font-weight: 600; }
+        p { color: #888; font-size: 14px; margin-bottom: 20px; }
+        
+        .grid-container {
+            display: flex; flex-direction: column; gap: 10px;
+        }
+
+        .social-link {
+            display: flex; align-items: center; text-decoration: none; color: white;
+            padding: 12px 20px; border-radius: 15px; font-weight: 600;
+            transition: 0.3s; font-size: 15px; text-align: left;
+        }
+        .social-link i { font-size: 20px; margin-right: 15px; width: 25px; text-align: center; }
+
+        /* Platform Colors */
         .facebook { background: #1877F2; }
         .whatsapp { background: #25D366; }
         .youtube { background: #FF0000; }
         .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .tiktok { background: #000; border: 1px solid rgba(255,255,255,0.4); }
-        .social-link:hover { transform: scale(1.04); }
-        .back-btn { background: none; border: 1px solid #333; color: #666; padding: 10px 25px; margin-top: 20px; border-radius: 20px; cursor: pointer; }
+        .tiktok { background: #000; border: 1px solid #444; }
+        .snapchat { background: #FFFC00; color: black; }
+        .threads { background: #000; border: 1px solid #444; }
+        .x-twitter { background: #000; border: 1px solid #444; }
+        .telegram { background: #0088cc; }
+        .viber { background: #7360f2; }
+        .imo { background: #2b73f8; }
+        .phone { background: #444; }
+
+        .social-link:hover { transform: scale(1.02); filter: brightness(1.1); }
+        
+        .back-btn {
+            background: none; border: 1px solid #333; color: #666; padding: 10px 25px;
+            margin-top: 25px; border-radius: 20px; cursor: pointer; transition: 0.3s;
+        }
+        .back-btn:hover { color: #fff; border-color: #fff; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h2>CONNECT WITH NIROSHA 🚀</h2>
-        <p>Choose your favorite platform</p>
-        <a href="https://www.facebook.com/share/18Bp78yEBk/" target="_blank" class="social-link facebook">Facebook</a>
-        <a href="https://wa.me/94741570339" target="_blank" class="social-link whatsapp">WhatsApp</a>
-        <a href="https://youtube.com/@nirosha_sandaruwan?si=Eq_B6GDkbNV4yQwG" target="_blank" class="social-link youtube">YouTube</a>
-        <a href="https://www.instagram.com/sandaruwan249928?igsh=b2FzaTlldDEzcXZm" target="_blank" class="social-link instagram">Instagram</a>
-        <a href="https://www.tiktok.com/@nirosha_sandaruwan?_r=1&_t=ZS-94qFJmcebGp" target="_blank" class="social-link tiktok">TikTok</a>
+        <h2>NIROSHA SANDARUWAN 🚀</h2>
+        <p>Connect with me on Social Media</p>
+        
+        <div class="grid-container">
+            <a href="https://www.facebook.com/share/18Bp78yEBk/" target="_blank" class="social-link facebook"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="https://wa.me/94741570339" target="_blank" class="social-link whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a href="https://youtube.com/@nirosha_sandaruwan?si=Eq_B6GDkbNV4yQwG" target="_blank" class="social-link youtube"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="https://www.instagram.com/sandaruwan249928?igsh=b2FzaTlldDEzcXZm" target="_blank" class="social-link instagram"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@nirosha_sandaruwan?_r=1&_t=ZS-94qFJmcebGp" target="_blank" class="social-link tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+            <a href="https://www.snapchat.com/add/sadaruwan249928?share_id=bM9JiMNJcyY&locale=en-US" target="_blank" class="social-link snapchat"><i class="fab fa-snapchat"></i> Snapchat</a>
+            <a href="https://www.threads.net/@sandaruwan249928" target="_blank" class="social-link threads"><i class="fa-brands fa-threads"></i> Threads</a>
+            <a href="https://x.com/SANDARUWAN82731" target="_blank" class="social-link x-twitter"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+            <a href="https://t.me/SANDARUWAN249928" target="_blank" class="social-link telegram"><i class="fab fa-telegram"></i> Telegram</a>
+            <a href="viber://chat?number=94741570339" target="_blank" class="social-link viber"><i class="fab fa-viber"></i> Viber</a>
+            <a href="https://profile.imo.im/profileshare/shr.AAAAAAAAAAAAAAAAAAAAAPrB36QNtMSbLSk85hB2C15COohds35oZpgix9_FdV9_" target="_blank" class="social-link imo"><i class="fa-solid fa-comments"></i> IMO</a>
+            <a href="tel:0741570339" class="social-link phone"><i class="fa-solid fa-phone"></i> Call Me (0741570339)</a>
+        </div>
+
         <button class="back-btn" onclick="location.href='home.html'">Back to Dashboard</button>
     </div>
+
 </body>
 </html>
 
