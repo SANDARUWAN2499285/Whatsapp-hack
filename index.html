@@ -1,3 +1,38 @@
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCgZp_3OHfhO6VOOxoQyDcUU-e6F4kTcSA",
+    authDomain: "sandaruwan-web.firebaseapp.com",
+    databaseURL: "https://sandaruwan-web-default-rtdb.firebaseio.com",
+    projectId: "sandaruwan-web",
+    storageBucket: "sandaruwan-web.firebasestorage.app",
+    messagingSenderId: "219324339628",
+    appId: "1:219324339628:web:7b237143ed408c3a921609"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Register Function
+  function signUp() {
+    const email = document.getElementById('userEmail').value;
+    const pass = document.getElementById('userPass').value;
+    auth.createUserWithEmailAndPassword(email, pass)
+      .then(() => { alert("Account Created! 🎉"); })
+      .catch((error) => { alert(error.message); });
+  }
+
+  // Login Function
+  function signIn() {
+    const email = document.getElementById('userEmail').value;
+    const pass = document.getElementById('userPass').value;
+    auth.signInWithEmailAndPassword(email, pass)
+      .then(() => { 
+          alert("Logged In! ✅");
+          window.location.href = "home.html";
+      })
+      .catch((error) => { alert(error.message); });
+  }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
