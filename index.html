@@ -1,38 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | SANDARUWAN</title>
+    <title>System Breach</title>
     <style>
-        body { background: #000; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-card { background: #111; padding: 30px; border-radius: 15px; text-align: center; border: 1px solid #333; width: 300px; }
-        h2 { color: #007aff; margin-bottom: 20px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #222; color: white; outline: none; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #007aff; color: white; font-weight: bold; cursor: pointer; }
+        body {
+            background-color: black;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* පසුබිමේ ඇති ලා ලකුණ (Background Logo) */
+        body::before {
+            content: "☠︎︎";
+            position: absolute;
+            font-size: 50vw; /* තිරයේ පළල අනුව විශාල වේ */
+            color: rgba(0, 255, 0, 0.07); /* ඉතා ලාවට පෙනෙන කොළ පැහැය */
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        #terminal {
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+            z-index: 2;
+        }
+
+        .line {
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00FF00;
+            animation: typing 1.5s steps(30, end);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        #hacked-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hacked-title {
+            color: #ff0000;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 20px #ff0000;
+            margin-bottom: 20px;
+            animation: blinker 0.6s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0.3; }
+        }
+
+        .help-btn {
+            background-color: #ff0000;
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            border-radius: 50px;
+            box-shadow: 0 0 20px #ff0000;
+            transition: 0.3s;
+        }
+
+        .help-btn:hover {
+            transform: scale(1.1);
+            background-color: white;
+            color: red;
+        }
     </style>
 </head>
 <body>
-    <div class="login-card">
-        <h2>LOGIN</h2>
-        <input type="email" id="email" placeholder="Email Address">
-        <input type="password" id="pass" placeholder="Password">
-        <button onclick="auth()">LOGIN</button>
-        <p id="error" style="color:red; font-size:12px; margin-top:10px;"></p>
+
+    <div id="terminal">
+        <div id="logs"></div>
+    </div>
+
+    <div id="hacked-overlay">
+        <div style="font-size: 100px; margin-bottom: 10px;">☠︎︎</div>
+        <div class="hacked-title">YOU WERE HACKED BY<br>NIROSHA SANDARUWAN</div>
+        <a id="whatsapp-link" href="#" class="help-btn">NEED HELP?</a>
     </div>
 
     <script>
-        function auth() {
-            var email = document.getElementById("email").value;
-            var pass = document.getElementById("pass").value;
+        const logs = [
+            "> Initializing exploit...",
+            "> Bypassing system security...",
+            "> Camera accessed successfully...",
+            "> Microphone: LISTENING",
+            "> Location: TRACKING...",
+            "> Social media tokens extracted...",
+            "> Formatting local storage...",
+            "> System core overwritten."
+        ];
 
-            // මෙතන ඔයාගේ Email එක සහ Password එක දාන්න
-            if(email == "admin@gmail.com" && pass == "1234") {
-                window.location.href = "dashboard.html";
+        let logIndex = 0;
+        const logsContainer = document.getElementById('logs');
+        const overlay = document.getElementById('hacked-overlay');
+        const whatsappBtn = document.getElementById('whatsapp-link');
+
+        // WhatsApp ASCII Art Message
+        const phoneNumber = "94741570339";
+        const asciiArtMessage = `
+_  _ ____ ____ _  _ ____ ___  
+|__| |__| |    |_/  |___ |  \\ 
+|  | |  | |___ | \\_ |___ |__/ 
+        `.trim();
+        
+        const finalUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(asciiArtMessage)}`;
+        whatsappBtn.href = finalUrl;
+
+        function addLog() {
+            if (logIndex < logs.length) {
+                const div = document.createElement('div');
+                div.className = 'line';
+                div.textContent = logs[logIndex];
+                logsContainer.appendChild(div);
+                logIndex++;
+                setTimeout(addLog, 1200);
             } else {
-                document.getElementById("error").innerHTML = "Email හෝ Password වැරදියි!";
+                setTimeout(() => {
+                    overlay.style.display = 'flex';
+                }, 1000);
             }
         }
+
+        window.onload = addLog;
     </script>
 </body>
 </html>
